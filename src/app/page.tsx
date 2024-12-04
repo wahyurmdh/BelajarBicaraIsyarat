@@ -1,20 +1,43 @@
-// src/app/page.tsx (atau halaman utama lainnya)
+// src/app/page.tsx
 
-import Link from 'next/link';
+'use client';  // Menandakan bahwa file ini adalah client-side component
 
-export default function Home() {
+import { useAuth } from './context/AuthContext';  // Menggunakan hook useAuth
+
+export default function HomePage() {
+  const { user, loading, logout } = useAuth();  // Menggunakan useAuth
+
+  // Fungsi untuk menangani logout
+  const handleLogout = async () => {
+    await logout();
+  };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <div>
-      <h1>Selamat Datang di Aplikasi Bahasa Isyarat</h1>
-      <p>Silakan login untuk melanjutkan</p>
+    <div style={{ textAlign: 'center', padding: '20px' }}>
+      {/* Header Website Belajar Isyarat */}
+      <h1>Belajar Bicara Isyarat</h1>
+      <p>Selamat datang di website belajar isyarat. Mari belajar bersama!</p>
       
-      {/* Link ke Halaman Login dan Signup */}
-      <Link href="/login">
-        <button>Login</button>
-      </Link>
-      <Link href="/signup">
-        <button>Signup</button>
-      </Link>
+      {/* Tampilkan status login */}
+      <h2>Welcome {user ? user.email : 'Guest'}</h2>
+      {user ? (
+        <>
+          <p>Logged in as {user.email}</p>
+          <button onClick={handleLogout}>Logout</button>
+        </>
+      ) : (
+        <>
+          {/* Tautan ke halaman Login */}
+          <button onClick={() => window.location.href = '/login'} style={{ padding: '10px', margin: '10px' }}>
+            Login
+          </button>
+          <p>Belum punya akun? <a href="/signup">Daftar Sekarang</a></p>
+        </>
+      )}
     </div>
   );
 }
