@@ -1,9 +1,9 @@
-// app/layout.tsx
+  // app/layout.tsx
 'use client';  // Menandakan bahwa file ini menggunakan fitur client-side React
 
 import React from 'react';
 import { AuthProvider } from './context/AuthContext'; // Import AuthProvider
-import './globals.css';
+import '../styles/globals.css';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
