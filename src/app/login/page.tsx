@@ -1,23 +1,23 @@
-"use client"; // Menandakan bahwa ini adalah client-side component
+// src/app/login/page.tsx
+
+'use client'; // Untuk memastikan komponen ini dijalankan di sisi klien
 
 import React, { useState } from 'react';
-import { auth } from '../../firebase-config'; // Import Firebase hanya di sisi klien
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { useRouter } from 'next/navigation'; // Import useRouter untuk navigasi
+import { auth } from '../../firebase-config';
+import { useRouter } from 'next/navigation';
 
-export default function Login() {
+export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const router = useRouter(); // Inisialisasi router
+  const router = useRouter();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      // Setelah login sukses, navigasi ke halaman utama atau halaman yang diinginkan
-      router.push('/');  // Redirect ke halaman utama (home) setelah login
+      router.push('/dashboard'); // Setelah login sukses, redirect ke halaman dashboard
     } catch (err: any) {
       setError('Login failed: ' + err.message);
     }

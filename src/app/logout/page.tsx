@@ -1,5 +1,7 @@
 // src/app/logout/page.tsx
 
+'use client';
+
 import { signOut } from 'firebase/auth';
 import { auth } from '../../firebase-config';
 import { useRouter } from 'next/navigation';

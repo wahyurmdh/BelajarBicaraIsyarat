@@ -1,21 +1,23 @@
 // src/app/signup/page.tsx
-"use client"; // Tambahkan ini di bagian atas
+
+'use client'; // Untuk memastikan komponen ini dijalankan di sisi klien
 
 import React, { useState } from 'react';
-import { auth } from '../../firebase-config'; // Import Firebase hanya di sisi klien
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebase-config';
+import { useRouter } from 'next/navigation';
 
-export default function Signup() {
+export default function SignupPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const router = useRouter();
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
-
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      // Redirect ke halaman login atau dashboard setelah signup sukses
+      router.push('/login'); // Redirect ke halaman login setelah signup sukses
     } catch (err: any) {
       setError('Signup failed: ' + err.message);
     }
