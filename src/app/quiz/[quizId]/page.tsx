@@ -3,7 +3,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router'; // Gunakan useRouter dari Next.js
-import { getQuizData } from '../../utils/firebaseDatabase';
+import { getQuizData } from '../../../utils/firebaseDatabase';
 
 const QuizPage = () => {
   const router = useRouter(); // Menggunakan useRouter dari Next.js

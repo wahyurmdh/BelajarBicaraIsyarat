@@ -2,9 +2,9 @@
 
 'use client'; // Untuk memastikan komponen ini dijalankan di sisi klien
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../firebase-config';
+import { auth } from '../../../firebase-config';
 import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {

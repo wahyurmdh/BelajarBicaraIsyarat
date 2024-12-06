@@ -3,19 +3,14 @@
 import React from 'react';
 
 interface ButtonProps {
-  text: string;
-  onClick: () => void;
-  className?: string;  // Untuk menambahkan class CSS tambahan jika diperlukan
+  children: React.ReactNode;  // Menambahkan tipe untuk children
+  onClick: () => Promise<void>;
 }
 
-const Button: React.FC<ButtonProps> = ({ text, onClick, className = '' }) => {
+const Button: React.FC<ButtonProps> = ({ children, onClick }) => {
   return (
-    <button 
-      onClick={onClick} 
-      className={`btn ${className}`} 
-      style={{ padding: '10px 20px', fontSize: '16px' }} 
-    >
-      {text}
+    <button onClick={onClick}>
+      {children}  {/* Menampilkan children */}
     </button>
   );
 };

@@ -4,7 +4,7 @@
 
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../firebase-config';
+import { auth } from '../../../firebase-config';
 import { useRouter } from 'next/navigation';
 
 export default function SignupPage() {
